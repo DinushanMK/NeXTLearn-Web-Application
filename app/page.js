@@ -1,101 +1,246 @@
-import Image from "next/image";
+"use client";
+import React, { useState } from 'react';
 
-export default function Home() {
+export default function StartScreen() {
+  const [showAdminLogin, setShowAdminLogin] = useState(false);
+
+  const handleAdminLoginClick = () => {
+    setShowAdminLogin(true);
+  };
+
+  const handleBackToStart = () => {
+    setShowAdminLogin(false);
+  };
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-200 relative font-outfit">
+      {showAdminLogin ? (
+        // Admin Login Form
+        <div className="min-h-screen flex items-center justify-center bg-white w-full">
+          {/* Container for the login form with border and padding */}
+          <div className="p-6 border border-gray-300 rounded-lg shadow-md w-full max-w-md">
+            {/* NeXTLearn Title */}
+            <h1 className="text-4xl font-bold text-[#626AE7] mb-4 text-center">NeXTLearn</h1>
+            
+            {/* Admin Login Header */}
+            <h2 className="text-xl font-semibold text-gray-800 mb-4 text-center">Admin Login</h2>
+            
+            {/* Login Form - Centered content */}
+            <form className="space-y-4 flex flex-col items-center">
+              {/* Username Field */}
+              <div className="w-full">
+                <label htmlFor="username" className="block text-gray-700 font-medium mb-1">
+                  Username
+                </label>
+                <input
+                  type="email"
+                  id="username"
+                  placeholder="Enter your email address"
+                  className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#626AE7]"
+                />
+              </div>
+              
+              {/* Password Field */}
+              <div className="w-full">
+                <label htmlFor="password" className="block text-gray-700 font-medium mb-1">
+                  Password
+                </label>
+                <input
+                  type="password"
+                  id="password"
+                  placeholder="Enter your password"
+                  className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#626AE7]"
+                />
+              </div>
+              
+              {/* Login Button */}
+              <button
+                type="submit"
+                className="w-32 bg-[#626AE7] text-white py-2 rounded-md hover:bg-[#5259B9] transition-colors font-bold"
+              >
+                Login
+              </button>
+            </form>
+          </div>
+          
+          {/* Start Screen Button (Top-Right Corner) */}
+          <button
+            onClick={handleBackToStart}
+            className="absolute top-4 right-4 bg-[#626AE7] text-white px-4 py-2 rounded-md hover:bg-[#5259B9] transition-colors font-bold"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            Start Screen
+          </button>
+          
+          {/* Footer (Made with Visily) */}
+          <div className="absolute bottom-4 text-[#626AE7] text-sm">
+            Made with <span className="font-bold">Visily</span>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      ) : (
+        // Start Screen Content
+        <>
+          {/* Admin Login Button (Top-Right Corner) */}
+          <button
+            onClick={handleAdminLoginClick}
+            className="absolute top-5 right-5 bg-[#626AE7] text-white px-5 py-3 rounded-md hover:bg-[#512a8a] transition-colors duration-300 font-bold text-lg border-2 border-[#636AE8]"
+          >
+            Admin Login
+          </button>
+
+          {/* Main Content */}
+          <div className="text-center">
+            {/* NeXTLearn Title */}
+            <h1 className="text-8xl font-bold text-[#626AE7] mb-6">NeXTLearn</h1>
+            
+            {/* Subtitle */}
+            <p className="text-2xl text-black font-bold mb-11">
+              AI Based Specialized LMS Study Material Platform
+            </p>
+            
+            {/* Get Started Button */}
+            <a
+              href="/dashboard"
+              className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-primary hover:bg-primary focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900"
+            >
+              Get Started
+              <svg
+                className="ml-2 -mr-1 w-5 h-5"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                  clipRule="evenodd"
+                ></path>
+              </svg>
+            </a>
+          </div>
+        </>
+      )}
     </div>
   );
 }
+
+
+
+
+
+
+// "use client"
+// import React from 'react';
+// import Link from 'next/link'; // For navigation between pagesimport { useState } from 'react';
+// import { useState } from 'react';
+// export default function AdminLogin() {
+//   const [loginSuccess, setLoginSuccess] = useState(false);
+
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
+//     // You can add real authentication logic here
+//     setLoginSuccess(true);
+//   };
+
+//   return (
+//     <div className="min-h-screen flex items-center justify-center bg-white">
+//       {/* Container for the login form */}
+//       <div className="p-6 border border-gray-300 rounded-lg shadow-md w-full max-w-md relative">
+//         {/* NeXTLearn Title */}
+//         <h1 className="text-4xl font-bold text-[#626AE7] mb-4 text-center">NeXTLearn</h1>
+
+//         {/* Admin Login Header */}
+//         <h2 className="text-xl font-semibold text-gray-800 mb-4 text-center">Admin Login</h2>
+
+//         {/* Success Message */}
+//         {loginSuccess && (
+//           <div className="mb-4 p-2 bg-green-100 text-green-700 rounded text-center font-medium">
+//             Login Successful!
+//           </div>
+//         )}
+
+//         {/* Login Form */}
+//         <form onSubmit={handleSubmit} className="space-y-4 flex flex-col items-center">
+//           {/* Username Field */}
+//           <div className="w-full">
+//             <label htmlFor="username" className="block text-gray-700 font-medium mb-1">
+//               Username
+//             </label>
+//             <input
+//               type="email"
+//               id="username"
+//               placeholder="Enter your email address"
+//               className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#626AE7]"
+//             />
+//           </div>
+
+//           {/* Password Field */}
+//           <div className="w-full">
+//             <label htmlFor="password" className="block text-gray-700 font-medium mb-1">
+//               Password
+//             </label>
+//             <input
+//               type="password"
+//               id="password"
+//               placeholder="Enter your password"
+//               className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#626AE7]"
+//             />
+//           </div>
+
+//           {/* Login Button */}
+//           <button
+//             type="submit"
+//             className="w-32 bg-[#626AE7] text-white py-2 rounded-md hover:bg-[#5259B9] transition-colors font-bold"
+//           >
+//             Login
+//           </button>
+//         </form>
+//       </div>
+
+//       {/* Start Screen Button */}
+//       <a
+//         href="/start"
+//         className="absolute top-4 right-4 bg-[#626AE7] text-white px-4 py-2 rounded-md hover:bg-[#5259B9] transition-colors font-bold"
+//       >
+//         Start Screen
+//       </a>
+
+//       {/* Footer */}
+//       <div className="absolute bottom-4 text-[#626AE7] text-sm">
+//         Made with <span className="font-bold">Visily</span>
+//       </div>
+//     </div>
+//   );
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import { Button } from "@/components/ui/button";
+// import { UserButton } from "@clerk/nextjs";
+// import Image from "next/image";
+
+// export default function Home() {
+//   return (
+//     <div>
+//       <h2>NeXTLearn is An AI Based Specialized LMS SAAS Application</h2>
+//       <Button>Login</Button>
+
+//       <UserButton/>
+//     </div>
+//   );
+// }
